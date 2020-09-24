@@ -9,7 +9,7 @@ interface RestApi {
 
 
     @GET("schedule")
-    fun getMovieDetails(@Query("country") country : String,@Query("date") date : String) : Single<List<MovieModel>>
+    fun getMovieDetails(@Query("country") country : String,@Query("date") date : String) : Single<ArrayList<MovieModel>>
 
 
 }

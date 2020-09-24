@@ -1,6 +1,7 @@
 package com.example.myapplication.model
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class MovieModel(
 
@@ -61,6 +62,8 @@ data class Show (
     val image : ImageData,
     @SerializedName("summary")
     val summary : String,
+    @SerializedName("genres")
+    val genres : List<String>
 
     )
 

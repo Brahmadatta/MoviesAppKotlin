@@ -20,7 +20,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application){
 
 
     val movies by lazy {
-        MutableLiveData<List<MovieModel>>()
+        MutableLiveData<ArrayList<MovieModel>>()
     }
 
     val loading by lazy {
@@ -38,10 +38,10 @@ class MovieViewModel(application: Application) : AndroidViewModel(application){
             restApiService.getMovieDetailsData()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<List<MovieModel>>(){
-                    override fun onSuccess(t: List<MovieModel>) {
+                .subscribeWith(object : DisposableSingleObserver<ArrayList<MovieModel>>(){
+                    override fun onSuccess(list : ArrayList<MovieModel>) {
 
-                        Log.e("data",t.toString())
+                        movies.postValue(list)
                     }
 
                     override fun onError(e: Throwable) {

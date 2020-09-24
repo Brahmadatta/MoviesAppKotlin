@@ -6,13 +6,17 @@ import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.model.MovieModel
 import com.example.myapplication.viewmodel.MovieViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var movieViewModel: MovieViewModel
+    private val movieAdapter = MovieAdapter(ArrayList())
+    private val linearLayoutManager = LinearLayoutManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,12 +27,16 @@ class MainActivity : AppCompatActivity() {
         movieViewModel.movies.observe(this,movieListObserver)
         movieViewModel.getMovieDetails()
 
+        movie_recyclerView.layoutManager = linearLayoutManager
+        movie_recyclerView.setHasFixedSize(true)
+
 
     }
 
-    private val movieListObserver = Observer<List<MovieModel>> { list ->
+    private val movieListObserver = Observer<ArrayList<MovieModel>> { list ->
         list?.let {
-            Log.e("data",it.toString())
+            movieAdapter.updateList(it)
+            movie_recyclerView.adapter = movieAdapter
         }
     }
 }

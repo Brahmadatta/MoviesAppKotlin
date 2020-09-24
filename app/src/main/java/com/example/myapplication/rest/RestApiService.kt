@@ -18,7 +18,7 @@ class RestApiService {
         .create(RestApi::class.java)
 
 
-    fun getMovieDetailsData() : Single<List<MovieModel>>{
+    fun getMovieDetailsData() : Single<ArrayList<MovieModel>>{
         return restApi.getMovieDetails("US","2019-12-01")
     }
 
