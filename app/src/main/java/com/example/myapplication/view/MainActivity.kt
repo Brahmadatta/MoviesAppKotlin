@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
 
         navController = Navigation.findNavController(this,R.id.nav_controller)
-        //NavigationUI.setupActionBarWithNavController(this,navController)
+        NavigationUI.setupActionBarWithNavController(this,navController)
 
 
     }
