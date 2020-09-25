@@ -19,7 +19,7 @@ class RestApiService {
 
 
     fun getMovieDetailsData() : Single<ArrayList<MovieModel>>{
-        return restApi.getMovieDetails("US","2019-12-01")
+        return restApi.getMovieDetails("US","2020-01-01")
     }
 
 }

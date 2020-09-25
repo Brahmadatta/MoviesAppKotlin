@@ -6,6 +6,9 @@ import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.model.MovieModel
@@ -14,29 +17,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var movieViewModel: MovieViewModel
-    private val movieAdapter = MovieAdapter(ArrayList())
-    private val linearLayoutManager = LinearLayoutManager(this)
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        movieViewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
-        movieViewModel.movies.observe(this,movieListObserver)
-        movieViewModel.getMovieDetails()
 
-        movie_recyclerView.layoutManager = linearLayoutManager
-        movie_recyclerView.setHasFixedSize(true)
+
+        navController = Navigation.findNavController(this,R.id.nav_controller)
+        //NavigationUI.setupActionBarWithNavController(this,navController)
 
 
     }
 
-    private val movieListObserver = Observer<ArrayList<MovieModel>> { list ->
-        list?.let {
-            movieAdapter.updateList(it)
-            movie_recyclerView.adapter = movieAdapter
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController,null)
     }
+
 }
