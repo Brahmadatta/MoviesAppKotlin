@@ -30,20 +30,25 @@ class MovieAdapter(private val movieList: ArrayList<MovieModel>) : RecyclerView.
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
 
         holder.itemView.movie_name.text = movieList[position].name
-        val image = movieList[position].show.image
+        val image = movieList[position].show?.image
         if (image != null)
         {
-            holder.itemView.movie_image.loadImage(image.medium, getProgressDrawable(holder.itemView.context))
+            image.medium?.let { holder.itemView.movie_image.loadImage(it, getProgressDrawable(holder.itemView.context)) }
         }else{
             Glide.with(holder.itemView.movie_image).load(R.drawable.ic_launcher_background).into(holder.itemView.movie_image)
         }
+
+
     }
 
     override fun getItemCount(): Int {
         return movieList.size
     }
 
-    class MovieViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    class MovieViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
+        override fun onClick(p0: View?) {
+
+        }
 
 //        var moviename : String? = null
 //        var movieImageUrl : String? = null

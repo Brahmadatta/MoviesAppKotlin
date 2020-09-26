@@ -10,7 +10,7 @@
         android:label="fragment_movies"
         tools:layout="@layout/fragment_movies" >
         <action
-            android:id="@+id/action_moviesFragment_to_detailFragment"
+            android:id="@+id/actionMovies"
             app:destination="@id/detailFragment" />
     </fragment>
     <fragment
@@ -19,7 +19,10 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <action
-            android:id="@+id/action_detailFragment_to_moviesFragment"
+            android:id="@+id/actionMovieDetail"
             app:destination="@id/moviesFragment" />
+        <argument
+            android:name="movieDetailData"
+            app:argType="com.example.myapplication.model.MovieModel" />
     </fragment>
 </navigation>
