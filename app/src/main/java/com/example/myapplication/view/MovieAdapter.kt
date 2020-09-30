@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
@@ -38,6 +39,10 @@ class MovieAdapter(private val movieList: ArrayList<MovieModel>) : RecyclerView.
             Glide.with(holder.itemView.movie_image).load(R.drawable.ic_launcher_background).into(holder.itemView.movie_image)
         }
 
+        holder.itemView.setOnClickListener {
+            val action = MoviesFragmentDirections.actionMovies(movieList[position])
+            Navigation.findNavController(it).navigate(action)
+        }
 
     }
 

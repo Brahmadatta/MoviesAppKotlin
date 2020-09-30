@@ -18,7 +18,6 @@ class MoviesFragment : Fragment() {
 
     private lateinit var movieViewModel: MovieViewModel
     private val movieAdapter = MovieAdapter(ArrayList())
-    private val linearLayoutManager = LinearLayoutManager(context)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +38,12 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movie_recyclerView.layoutManager = linearLayoutManager
-        movie_recyclerView.setHasFixedSize(true)
+
     }
 
     private val movieListObserver = Observer<ArrayList<MovieModel>> { list ->
         list?.let {
+            movie_recyclerView?.layoutManager = LinearLayoutManager(context)
             movieAdapter.updateList(it)
             movie_recyclerView.adapter = movieAdapter
         }
