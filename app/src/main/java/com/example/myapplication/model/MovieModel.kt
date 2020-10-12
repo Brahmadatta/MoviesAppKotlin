@@ -45,8 +45,7 @@ data class MovieModel(
         parcel.readString(),
         parcel.readParcelable(Show::class.java.classLoader),
         TODO("links")
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
