@@ -33,7 +33,7 @@
                 android:layout_height="0dp"
                 android:scaleType="fitXY"
                 android:layout_weight="8"
-                android:imageUrl="@{movies.show.image}"
+                android:original="@{movies.show.image.original}"
                 android:id="@+id/movie_image"/>
 
             <TextView

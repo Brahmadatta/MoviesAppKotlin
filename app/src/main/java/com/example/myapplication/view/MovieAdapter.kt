@@ -12,9 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.databinding.MovieItemModelBinding
 import com.example.myapplication.model.MovieModel
-import com.example.myapplication.util.getProgressDrawable
-import com.example.myapplication.util.loadImage
-import kotlinx.android.synthetic.main.movie_item_model.view.*
 
 class MovieAdapter(private val movieList: ArrayList<MovieModel>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
