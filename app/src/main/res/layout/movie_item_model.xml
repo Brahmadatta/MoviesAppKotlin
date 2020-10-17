@@ -17,8 +17,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         app:cardUseCompatPadding="true"
-        app:cardElevation="15dp"
-        android:layout_height="400dp">
+        app:cardElevation="30dp"
+        android:layout_height="420dp">
 
 
         <LinearLayout
