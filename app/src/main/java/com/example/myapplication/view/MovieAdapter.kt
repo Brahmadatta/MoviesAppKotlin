@@ -13,7 +13,7 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.MovieItemModelBinding
 import com.example.myapplication.model.MovieModel
 
-class MovieAdapter(private val movieList: ArrayList<MovieModel>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(private val movieList: ArrayList<MovieModel>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() , MovieClickListener{
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
 //        val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item_model,parent,false)
@@ -36,6 +36,8 @@ class MovieAdapter(private val movieList: ArrayList<MovieModel>) : RecyclerView.
 
         holder.view.movies = movieList[position]
 
+        holder.view.listener = this
+
 //        holder.itemView.movie_name.text = movieList[position].name
 //        val image = movieList[position].show?.image
 //        if (image != null)
@@ -50,16 +52,15 @@ class MovieAdapter(private val movieList: ArrayList<MovieModel>) : RecyclerView.
 //            Navigation.findNavController(it).navigate(action)
 //        }
 
+
+
     }
 
     override fun getItemCount(): Int {
         return movieList.size
     }
 
-    class MovieViewHolder(var view: MovieItemModelBinding) : RecyclerView.ViewHolder(view.root), View.OnClickListener{
-        override fun onClick(p0: View?) {
-
-        }
+    class MovieViewHolder(var view: MovieItemModelBinding) : RecyclerView.ViewHolder(view.root){
 
 //        var moviename : String? = null
 //        var movieImageUrl : String? = null
@@ -75,6 +76,18 @@ class MovieAdapter(private val movieList: ArrayList<MovieModel>) : RecyclerView.
 //            movieUrl.loadImage()
 //
 //        }
+    }
+
+    override fun onClick(view: View) {
+
+        for (movies in movieList)
+        {
+            if (view.tag == movies.name)
+            {
+                val action = MoviesFragmentDirections.actionMovies(movies)
+                Navigation.findNavController(view).navigate(action)
+            }
+        }
     }
 
 }
